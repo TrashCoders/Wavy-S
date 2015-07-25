@@ -1,5 +1,5 @@
 <?php
-
+/*
 if(isset($_POST['username'])&&isset($_POST['password'])){
 $username=$_POST['username'];
 $password=$_POST['password'];
@@ -28,12 +28,16 @@ $password_hase=md5($password);
 
 
 }
-
+*/
 ?>
+<html>
+	<body>
 
-<form action="<?php echo $current_file;?>" method="post">
-Username:<input type="text" name="username"><br>
-Password:<input type="password" name="password"><br>
-<input type="submit" value="Log in">
+		<form action="<?php echo $current_file;?>" method="post">
+		Username:<input type="text" name="username"><br>
+		Password:<input type="password" name="password"><br>
+		<input type="submit" value="Log in">
 
-</form>
+		</form>
+	</body>
+<html>
