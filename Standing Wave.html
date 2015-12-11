@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Standing Wave</title>
+<link href="Standing%20Wave_files/inject_b.css" type="text/css" rel="stylesheet" id="adblock-lite-list">
+<style id="adblock-custom-list" type="text/css"></style>
+<link href="Standing%20Wave_files/light.css" type="text/css" rel="stylesheet"></head>
+
+<body style="font-family:sans-serif; font-size:15px; width:600px; margin-left:auto; margin-right:auto;">
+<center>
+<h3> Group 12- Prototype 1</h3>
+<h4>Wavy-S</h4>
+</center>
+    <canvas id="myCanvas" width="600px" height="600px"></canvas>
+<center>
+    <div id="buttons">
+      <input id="play" value="Play" onclick="play()" type="button">
+      <input id="pause" value="Pause" onclick="pause()" type="button">
+      <input id="stepback" value="&lt;&lt; Step" onclick="stepBack()" type="button">
+      <input id="stepforward" value="Step &gt;&gt;" onclick="stepForward()" type="button">
+      <input id="reset" value="Reset" onclick="reset()" type="button">
+    </div>
+    <div id="morebuttons">Harmonic Settings
+      <input id="H1" value="n = 1" onclick="setF(1)" type="button">
+      <input id="H2" value="n = 2" onclick="setF(2)" type="button">
+      <input id="H3" value="n = 3" onclick="setF(3)" type="button">
+      <input id="H4" value="n = 4" onclick="setF(4)" type="button">
+      <input id="H5" value="n = 5" onclick="setF(5)" type="button">
+      <input id="H6" value="n = 6" onclick="setF(6)" type="button"></br>
+    </div>
+
+</center>
+
+  <script>
+
+      function setF(harmonic)
+      {
+             freq = 2*harmonic;
+             reset();
+     }
+
+      function play() {
+        window.clearTimeout(timer);
+        runFlag = 1;
+        runMotion();
+
+      }
+
+      function pause() {
+        window.clearTimeout(timer);
+        runFlag = 0;
+
+      }
+
+      function stepForward() {
+        window.clearTimeout(timer);
+        runFlag = 1;
+        drawMotion();
+
+      }
+
+      function stepBack() {
+        window.clearTimeout(timer);
+        index = index-2;
+        if (index < -1) index = -1;
+        time = index/20;
+        xPos = xBase;
+        runFlag = 1;
+        drawMotion();
+
+      }
+
+
+      function reset() {
+        window.clearTimeout(timer);
+        index = -1;
+        time = 0.0;
+        v = Math.sqrt(1000*Tension/mu);
+        v = 40;
+        lambda = v/freq;
+
+        runFlag = 1;
+        runMotion();
+
+      }
+
+
+      var canvas = document.getElementById("myCanvas");
+      var context = canvas.getContext("2d");
+      var index = -1;
+      var xBase = 70;
+      var yBase = 30;
+      var yBase1 = yBase + 140;
+      var yBase2 = yBase + 300;
+      var xInit = 37;
+      var graphType = 1;
+      var graphTitle = 'A standing wave on a string';
+      var yAxisTitle = 'y (mm)';
+      var xAxisTitle = 'x (m)';
+      var yIncrement = 20;
+      var yNumDecimals = 0;
+      var yStart = yBase+120;
+      var plotColor = '#ff00ff';
+      var scenario = 1;
+      var freq = 2;
+      var A = 20; //height factor 1
+      var Tension = 100;
+      var mu = 20;
+      var v = Math.sqrt(1000*Tension/mu);
+      v = 40;
+      var lambda = v/freq;
+      var radius = 5;
+      var time = 0.0;
+      var deltat = 1/20.0;
+      var timer;
+      var runFlag = 1;
+
+      reset();
+
+    function drawMotion() {
+
+  //    console.log("In the drawMotion function, with runFlag = " + runFlag );
+
+      if (index >= 8000) runFlag = 0;
+
+  //    console.log("In the drawMotion function, with runFlag = " + runFlag + " Fx = " + Fx);
+
+      if (runFlag == 1) {    //      run if runFlag equal 1, not if equal 0
+        // clear
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        index = index + 1;
+
+        // set background color for the entire thing
+           context.fillStyle = "#ffd";
+           context.fillRect(0, 0, canvas.width, canvas.height);
+
+        // set background color for the 1st graph
+           context.fillStyle = "#eff";
+           context.fillRect(xBase, yBase, 400, 80);
+
+        // set background color for the 3rd graph
+           context.fillStyle = "#eff";
+           context.fillRect(xBase, yBase2, 400, 160);
+
+
+           context.strokeStyle = '#000';
+           context.lineWidth = 1;
+
+        // vertical grid lines
+         for (var i = 0; i <= 10; i++) {
+           context.beginPath();
+           context.moveTo(xBase+40*i, yBase);
+           context.lineTo(xBase+40*i, yBase+86);
+           context.stroke();
+           context.font = '14pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+           axisValue = i;
+           axisLabel = axisValue.toFixed(0);
+           context.fillText(axisLabel, xBase+40*i, yBase+95);
+
+           context.beginPath();
+           context.moveTo(xBase+40*i, yBase2);
+           context.lineTo(xBase+40*i, yBase2+166);
+           context.stroke();
+           context.font = '14pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+           axisValue = i;
+           axisLabel = axisValue.toFixed(0);
+           context.fillText(axisLabel, xBase+40*i, yBase2+175);
+
+          }
+
+         // horizontal grid lines
+         for (i = 0; i <= 2; i++) {
+           context.beginPath();
+           context.moveTo(xBase-10, yBase+40*i);
+           context.lineTo(xBase+400, yBase+40*i);
+           context.stroke();
+           context.font = '14pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+
+           if (graphType == 1) {
+              axisValue = yIncrement*(1-i);
+
+           }
+
+           axisLabel = axisValue.toFixed(yNumDecimals);
+           context.fillText(axisLabel, xBase-24, yBase+40*i);
+
+          }
+
+         for (i = 0; i <= 4; i++) {
+           context.beginPath();
+           context.moveTo(xBase-10, yBase2+40*i);
+           context.lineTo(xBase+400, yBase2+40*i);
+           context.stroke();
+           context.font = '14pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+
+           if (graphType == 1) {
+              axisValue = yIncrement*(2-i);
+
+           }
+
+
+           axisLabel = axisValue.toFixed(yNumDecimals);
+           context.fillText(axisLabel, xBase-24, yBase2+40*i);
+
+          }
+
+         // x-axis
+           context.strokeStyle = '#000';
+           context.lineWidth = 4;
+           context.beginPath();
+           context.moveTo(xBase-1, yBase2+80);
+           context.lineTo(xBase+420, yBase2+80);
+           context.stroke();
+           context.moveTo(xBase+410, yBase2+80-6);
+           context.lineTo(xBase+420, yBase2+80);
+           context.lineTo(xBase+410, yBase2+80+6);
+           context.lineJoin = 'miter';
+           context.stroke();
+           context.font = '16pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'left';
+           context.fillText(xAxisTitle, xBase+428, yBase2+80);
+           context.beginPath();
+           context.moveTo(xBase-1, yBase+40);
+           context.lineTo(xBase+400, yBase+40);
+           context.stroke();
+
+
+         // y-axis
+           context.strokeStyle = '#000';
+           context.beginPath();
+           context.moveTo(xBase, yBase2-20);
+           context.lineTo(xBase, yBase2+80);
+           context.stroke();
+           context.moveTo(xBase-6, yBase2-10);
+           context.lineTo(xBase, yBase2-20);
+           context.lineTo(xBase+6, yBase2-10);
+           context.lineJoin = 'miter';
+           context.stroke();
+           context.strokeStyle = '#000';
+           context.textAlign = 'center';
+           context.fillText(yAxisTitle, xBase, yBase2-35);
+
+        // set line color
+           context.strokeStyle = '#999';
+           context.lineWidth = 2;
+
+           time = index/1000.0;
+		   // speed of wave
+
+
+         // draw the first wave
+           context.strokeStyle = 'red';
+           context.lineWidth = 2*mu/10;
+           context.beginPath();
+           context.moveTo(xBase, yBase+40-2*A*Math.sin(2*3.14159*freq*time));
+           for (var i=1; i<=200; i++) {
+            context.lineTo(xBase+2*i, yBase+40-2*A*Math.sin(2*3.14159*freq*time-2*3.14159*2*i/(40*lambda)));
+          }
+           context.stroke();
+
+         // draw the third wave
+           context.strokeStyle = '#808';
+           context.lineWidth = 2*mu/10;
+           context.beginPath();
+           context.moveTo(xBase, yBase2+80);
+           for (var i=1; i<=200; i++) {
+            context.lineTo(xBase+2*i, yBase2+80-2*A*Math.sin(2*3.14159*freq*time-2*3.14159*2*i/(40*lambda))+2*A*Math.sin(2*3.14159*freq*time+2*3.14159*2*i/(40*lambda)));
+          }
+           context.stroke();
+
+        // draw the scenario
+
+ //     console.log("In the drawMotion function, with runFlag = " + runFlag + " x2 = " + x2);
+
+
+           // graph 1 title
+           context.font = 'bold 16pt Calibri';
+           context.fillStyle = 'purple';
+           context.textAlign = 'center';
+           context.fillText("Wave traveling right", (canvas.width)/2-30, yBase-15);
+
+           // graph title
+           context.font = 'bold 16pt Calibri';
+           context.fillStyle = 'purple';
+           context.textAlign = 'center';
+           context.fillText(graphTitle, (canvas.width)/2-30, yBase2-20);
+
+           context.font = '16pt Calibri';
+           context.fillStyle = 'black';
+
+        var timeLabel = 't = ';
+        timeLabel = timeLabel + time.toFixed(3) + ' s';
+        context.textAlign = 'left';
+        context.fillText(timeLabel, xBase+430, 40);
+
+
+      }
+    }
+
+    function runMotion() {
+        drawMotion();
+        if (runFlag == 1) {
+          timer = window.setTimeout(runMotion, 1000/60);
+        }
+      }
+
+  </script>
+
+</body></html>
