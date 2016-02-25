@@ -1,0 +1,339 @@
+#OverviewSection{
+	position: absolute;
+	top: 75px;
+	left: 50px;
+	width: 925px;
+	height: 600px;
+	border: black;
+	border-style: dashed;
+	border-width: 5px;
+	visibility: visible;
+}
+
+#OverviewPicture{
+	position: absolute;
+	top: 390px;
+	left: 300px;
+}
+
+
+
+
+#LabDirections{
+	position: absolute;
+	top: 25px;
+	left: 50px;
+	width: 800px;
+}
+
+.InLabDirections{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:24px;
+	color:#990000;
+	text-align: center;
+}
+
+
+
+.Directions{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:22px;
+	color:#990000;
+	text-align: center;
+}
+
+.LittleDirections{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:16px;
+	color:#990000;
+	text-align: center;
+}
+
+/* This ID is for entire area of the program that will display as part of the simulation */
+
+#LabSection{
+	position: absolute;
+	top: 75px;
+	left: 0px;
+	visibility: hidden;
+}
+
+
+#DrawingSectionOne{
+	position: absolute;
+	top: 0px;
+	width: 925px;
+	left: 50px;
+	height: 602px;
+	border: black;
+	border-style: dashed;
+	border-width: 5px;
+}
+
+.smallbutton{
+	height: 30px;
+	width: 100px;
+	background-color: #AAAAAA;
+	border: 1px #990000 solid;
+	border-radius: 5px;
+	text-align: center;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:18px;
+	color:#990000;
+}
+
+
+
+
+#BeginButton{
+	position: absolute;
+	top: 300px;
+	left: 375px;
+	width: 150px;
+}
+
+#SimpleDirections{
+	position: absolute;
+	top: 250px;
+	left: 0px;
+	width: 920px;
+	text-align: center;
+}
+
+#Power{
+	position: absolute;
+	left: 360px;
+	top: 120px;
+	width: 75px;
+	height: 150px;
+	
+}
+
+
+.Button{
+	height: 45px;
+	padding-top: 5px;
+	background-color: #AAAAAA;
+	border: 2px #990000 solid;
+	border-radius: 10px;
+	text-align: center;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:28px;
+	color:#990000;
+}
+
+.InvisibleButton{
+
+}
+
+.ControlButton{
+	width: 55px;
+	height: 120px;
+	top: 160px;
+}
+
+#FrequencyDown{
+	position: absolute;
+	left:60px;
+}
+
+#FrequencyUp{
+	position: absolute;
+	left:120px;
+}
+
+#AmpDown{
+	position: absolute;
+	left:235px;
+}
+
+#AmpUp{
+	position: absolute;
+	left:295px;
+}
+
+
+#AutoSlow{
+	position: absolute;
+	left: 460px;
+	top: 200px;
+	width: 150px;
+	height: 70px;
+	padding-top: 30px;
+	visibility: hidden;	
+}
+
+#GhostImage{
+	position: absolute;
+	right: 5px;
+	top: 200px;
+	width: 150px;
+	height: 70px;
+	padding-top: 30px;
+	visibility: hidden;	
+}
+
+#ShowGrid{
+	position: absolute;
+	left: 625px;
+	top: 200px;
+	width: 150px;
+	height: 70px;
+	padding-top: 30px;
+	visibility: hidden;
+	
+}
+
+#TensionUp{
+	position: absolute;
+	left: 470px;
+	top:40px;
+	width: 60px;
+	height: 100px;
+}
+
+#TensionDown{
+	position: absolute;
+	left: 590px;
+	top:40px;
+	width: 60px;
+	height: 100px;
+}
+
+#LDUp{
+	position: absolute;
+	left: 710px;
+	top:40px;
+	width: 60px;
+	height: 100px;
+}
+
+#LDDown{
+	position: absolute;
+	left: 830px;
+	top:40px;
+	width: 60px;
+	height: 100px;
+}
+
+
+#PauseTime{
+	position: absolute;
+	left: 650px;
+	top: 120px;
+	width: 50px;
+	height: 75px;
+	visibility: hidden;
+	
+}
+
+#BigStepForward{
+	position: absolute;
+	left: 725px;
+	top: 120px;
+	width: 50px;
+	height: 75px;
+	visibility: hidden;
+}
+
+#BigStepBack{
+	position: absolute;
+	left: 575px;
+	top: 120px;
+	width: 50px;
+	height: 75px;
+	visibility: hidden;
+}
+
+#LittleStepForward{
+	position: absolute;
+	left: 800px;
+	top: 120px;
+	width: 50px;
+	height: 75px;
+	visibility: hidden;
+}
+
+#LittleStepBack{
+	position: absolute;
+	left: 500px;
+	top: 120px;
+	width: 50px;
+	height: 75px;
+	visibility: hidden;
+}
+
+#ControlArea{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 930px;
+	height: 350px;
+}
+#FitArea{
+	position: absolute;
+	top: 310px;
+	left: 0px;
+	width: 920px;
+	height: 50px;
+	
+}
+
+#NN{
+	position: absolute;
+	top: 0px;
+	left: 10px;
+	width: 150px;
+	height: 40px;
+}
+
+#NA{
+	position: absolute;
+	top: 0px;
+	left: 250px;
+	width: 150px;
+	height: 40px;
+}
+
+#AA{
+	position: absolute;
+	top: 0px;
+	left: 500px;
+	width: 150px;
+	height: 40px;
+}
+
+#NN2{
+	position: absolute;
+	top: 50px;
+	left: 10px;
+	width: 150px;
+	height: 40px;
+}
+
+#NA2{
+	position: absolute;
+	top: 50px;
+	left: 250px;
+	width: 150px;
+	height: 40px;
+}
+
+#AA2{
+	position: absolute;
+	top: 50px;
+	left: 500px;
+	width: 150px;
+	height: 40px;
+}
+
+
+
+
+#FullWave{
+	position: absolute;
+	top: 0px;
+	left: 750px;
+	width: 150px;
+	height: 40px;
+}
